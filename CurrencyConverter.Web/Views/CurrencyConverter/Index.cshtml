@@ -1,0 +1,44 @@
+﻿@model CurrencyConverter.Core.ViewModels.CurrencyConverter.LoadFormCurrencyConverterViewModel
+
+@section Styles{
+
+}
+    <div class="container">
+        <form class="form-horizontal" id="frmCurrencyConverter" role="form">
+            @Html.AntiForgeryToken()
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputState">From</label>
+                    <select asp-for="FromCurrencyId" class="form-control" asp-items="@(new SelectList(Model.FromCurrency,"Value","Text"))">
+                        <option value="">-- Choose --</option>
+                    </select>
+                    <span asp-validation-for="FromCurrencyId" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">To</label>
+                    <select asp-for="ToCurrencyId" class="form-control" asp-items="@(new SelectList(Model.ToCurrency,"Value","Text"))">
+                        <option value="">-- Choose --</option>
+                    </select>
+                    <span asp-validation-for="ToCurrencyId" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label asp-for="Amount" class="control-label"></label>
+                    <input asp-for="Amount" class="form-control" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="button" id="btnConvert" class="btn btn-primary">Convert</button>
+            <br /><br />
+                <div class="row">
+                    <div class="col-md-12">
+                          <span id="fromCurrencyres" style="font-size: 1.6rem"></span>
+                          <span id="toCurrencyres" style="font-size: 3rem;font-weight: 600;color: rgb(46, 60, 87);"></span>  <span id="PathCurrency" style="font-size: 1.6rem"></span>
+                    </div>
+                </div>
+        </form>
+    </div>
+
+
+    @section Scripts {
+    <script src="~/js/CurrencyConverter/main.js?@DateTime.Now.Ticks"></script>
+}
